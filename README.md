@@ -1,4 +1,4 @@
-# Instructions for setting up a Ubuntu 16.04 ec2 instance with caffe
+# Instructions for setting up a Ubuntu 16.04 ec2 instance with Caffe
 
 ## Note: Be sure to kick this instance off with at least 30GB Storage in the main partition!
 
@@ -90,3 +90,28 @@ Esc, then shift+z, then shift+z to leave
     source ~/.bashrc
     make runtest
 
+## Installing Anaconda
+
+    cd ~/downloads
+    wget http://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh
+    cd ~/downloads
+    bash ./Anaconda2-4.0.0-Linux-x86_64.sh
+
+## Other Python dependencies
+
+    sudo apt-get install graphviz
+    sudo apt-get install python-opencv
+    conda install opencv
+    pip install lmdb
+    pip install pydot
+    
+    cd /home/ubuntu/caffe/python
+    for req in $(cat requirements.txt); do pip install $req; done
+    cd /home/ubuntu/caffe
+    make pycaffe
+
+## Add the Caffe and PyCaffe paths to .bashrc
+
+    echo 'export CAFFE_ROOT=/home/ubuntu/caffe' >> ~/.bashrc
+    echo 'export PYTHONPATH=/home/ubuntu/caffe/python:/home/ubuntu/anaconda2/bin/python' >> ~/.bashrc
+    source ~/.bashrc
