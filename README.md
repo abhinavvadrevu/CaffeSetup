@@ -1,6 +1,8 @@
 # Instructions for setting up a Ubuntu 16.04 ec2 instance with caffe
 
-First check that there's space available. Run `lsblk` and ensure main partition has >15GB for Caffe, and enough for all the training data.
+## Note: Be sure to kick this instance off with at least 30GB Storage in the main partition!
+
+First check that there's space available. Run `lsblk` and ensure main partition has >30GB for Caffe, and enough for all the training data.
 
 ## Update the package lists
 
@@ -15,9 +17,6 @@ First check that there's space available. Run `lsblk` and ensure main partition 
 ## Installing CUDA
 
     mkdir downloads
-
-## Download and install NVIDIA CUDA
-    
     cd downloads
     wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/cuda-repo-ubuntu1404_7.5-18_amd64.deb
     sudo dpkg -i cuda-repo-ubuntu1404_7.5-18_amd64.deb
@@ -76,6 +75,7 @@ And set up hdf5
     dd
 
 Add the following in instead:
+
     i
     INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
     LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu/hdf5/serial/
